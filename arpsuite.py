@@ -47,7 +47,7 @@ try:
 		if options.iface != True:
 			mitm_process(get_gateway())
 			add_rules()
-			print ("CTRL +C to Exit")
+			print ("CTRL + C to Exit")
 			while True:
 				pass
 		else:
