@@ -7,8 +7,7 @@ import os, sys, subprocess
 
 usage = sys.argv[0] + " -i [iface] "
 parser = OptionParser(usage)
-parser.add_option("-i","--iface",
-                  dest="iface", default=True, metavar="iface", help="MITM Interface")
+parser.add_option("-i","--iface", dest="iface", default=True, metavar="iface", help="MITM Interface")
 (options, args) = parser.parse_args()
 
 def add_rules():
