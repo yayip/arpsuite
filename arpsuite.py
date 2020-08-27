@@ -15,12 +15,12 @@ def add_rules():
 	# sys forwarding
 	subprocess.Popen("sysctl net.ipv4.ip_forward=1", stdout=subprocess.DEVNULL, shell=True)
 	# firewall redirection to burp
-	os.system("sudo iptables -A FORWARD --in-interface " + options.iface + " -j ACCEPT")
-	os.system("sudo iptables -t nat -A PREROUTING -i " + options.iface + " -p tcp -m multiport --dport 80,443 -j REDIRECT --to-port 8080")
+	os.system("iptables -A FORWARD --in-interface " + options.iface + " -j ACCEPT")
+	os.system("iptables -t nat -A PREROUTING -i " + options.iface + " -p tcp -m multiport --dport 80,443 -j REDIRECT --to-port 8080")
 
 def remove_rules():
-	os.system("sudo iptables -D FORWARD --in-interface " + options.iface + " -j ACCEPT")
-	os.system("sudo iptables -D PREROUTING -t nat -i " + options.iface + " -p tcp -m multiport --dport 80,443 -j REDIRECT --to-port 8080")
+	os.system("iptables -D FORWARD --in-interface " + options.iface + " -j ACCEPT")
+	os.system("iptables -D PREROUTING -t nat -i " + options.iface + " -p tcp -m multiport --dport 80,443 -j REDIRECT --to-port 8080")
 
 def get_gateway():
 	try: 
