@@ -45,7 +45,7 @@ def mitm_process(gateway):
 
 try:
 	if __name__ == '__main__':
-		if options.iface != True:
+		if options.iface != True and options.dport != True and options.bport != True:
 			mitm_process(get_gateway())
 			add_rules()
 			print ("CTRL + C to Exit")
