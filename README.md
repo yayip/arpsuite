@@ -2,9 +2,7 @@
 
 arpsuite running on Linux only
 
-`./arpsuite.py -i [iface]`
-
-You can add spesific port redirection in `--dport 80,443` at the source code. 
+`./arpsuite.py -i [iface] -d [dport] -b [bport]`
 
 ![DeepinScreenshot_select-area_20200827092141](https://user-images.githubusercontent.com/39186995/91376232-d3fab880-e846-11ea-8f97-c87f4acba564.png)
 
