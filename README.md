@@ -2,7 +2,13 @@
 
 arpsuite running on Linux only
 
-`./arpsuite.py -i [iface] -d [dport] -b [bport]`
+`Usage: arpsuite.py -i [iface] -d [dport] -b [bport]
+
+Options:
+  -h, --help                  show this help message and exit
+  -i iface, --iface=iface     MITM interface target
+  -d dport, --dport=dport     Target port redirection to Burpsuite, you can define multiport like 80,443
+  -b bport, --bport=bport     Burpsuite port proxy`
 
 ![DeepinScreenshot_select-area_20200827092141](https://user-images.githubusercontent.com/39186995/91376232-d3fab880-e846-11ea-8f97-c87f4acba564.png)
 
